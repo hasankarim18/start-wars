@@ -7,8 +7,7 @@ const MovieList = (props) => {
     // const date = new Date(props.releaseDate)
 
     // console.log(date)
-
-    //  console.log(props.openingText)
+    console.log(props)
     return (
         <div className="container pt-3" >
             <div className="row justify-content-center">
@@ -17,10 +16,10 @@ const MovieList = (props) => {
                         props.movies.map((item) => {
                             return (
                                 <Movie
-                                    key={item.id}
+                                    key={item.episode_id}
                                     title={item.title}
-                                    openingText={item.openingText}
-                                    releaseDate={item.releaseDate}
+                                    openingText={item.opening_crawl}
+                                    releaseDate={item.release_date}
                                 />
                             )
                         })

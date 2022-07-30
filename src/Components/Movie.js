@@ -7,6 +7,7 @@ const Movie = (props) => {
     //    console.log(props)
     const date = new Date(props.releaseDate)
 
+
     dateFormat(date, "dd, mm, yyyy");
     return (
         <div className="m-2" >
