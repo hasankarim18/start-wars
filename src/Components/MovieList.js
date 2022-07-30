@@ -7,7 +7,7 @@ const MovieList = (props) => {
     // const date = new Date(props.releaseDate)
 
     // console.log(date)
-    console.log(props)
+
     return (
         <div className="container pt-3" >
             <div className="row justify-content-center">
