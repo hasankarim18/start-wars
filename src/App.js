@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import MovieList from './Components/MovieList';
 
@@ -11,29 +11,44 @@ function App() {
   const [error, setError] = useState(null)
 
 
-  async function fetchMovieHandler() {
+
+  const fetchMovieHandler = useCallback(async () => {
     setIsLoading(true)
     setError(null)
     try {
-
+      const response = await fetch('https://swapi.dev/api/films/')
       if (!response.ok) {
-        console.log(error)
         throw new Error('Something went wrong here!')
       }
-
-      const response = await fetch('https://swapi.dev/api/films/')
       const data = await response.json()
       const getData = () => {
         setMovies(data.results)
         setIsLoading(false)
-        console.log(data.results)
 
       }
       return getData()
     } catch (error) {
       setError(error.message)
+      setIsLoading(false)
     }
+  }, [])
 
+  useEffect(() => {
+    fetchMovieHandler()
+  }, [fetchMovieHandler])
+
+  let content = <p> Found No Movies </p>
+
+  if (movies.length > 0) {
+    content = <MovieList movies={movies} />
+  }
+
+  if (error) {
+    content = <p>{error}</p>
+  }
+
+  if (isLoading) {
+    content = <p>Loading ... </p>
   }
 
   return (
@@ -49,14 +64,11 @@ function App() {
       </section>
 
       <section>
-        {!isLoading && movies.length > 0 && <MovieList movies={movies} />}
+
         <div className="container mt-2">
           <div className="row justify-content-center">
             <div className="col-12 col-sm-10 col-md-8 bg-light text-center">
-              {!isLoading && movies.length === 0 && <p> No movies found </p>}
-              {isLoading && <p>Loading....</p>}
-
-              {!isLoading && error ? <p>{error}</p> : ''}
+              {content}
 
             </div>
           </div>
@@ -64,7 +76,7 @@ function App() {
 
 
       </section>
-    </React.Fragment>
+    </React.Fragment >
   );
 }
 

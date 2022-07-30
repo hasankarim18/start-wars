@@ -10,7 +10,7 @@ const Movie = (props) => {
 
     dateFormat(date, "dd, mm, yyyy");
     return (
-        <div className="m-2" >
+        <div className="m-2 mb-3" >
             <Card>
                 <CardHeader>
                     <h5>Movie Title: {props.title} </h5>
@@ -29,6 +29,7 @@ const Movie = (props) => {
                     </span>
                 </CardFooter>
             </Card>
+            <hr style={{ borderTop: "2px solid red" }} />
         </div>
     )
 }

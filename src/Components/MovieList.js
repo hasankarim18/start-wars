@@ -9,25 +9,21 @@ const MovieList = (props) => {
     // console.log(date)
 
     return (
-        <div className="container pt-3" >
-            <div className="row justify-content-center">
-                <div className="col-12 col-sm-10 col-md-8">
-                    {
-                        props.movies.map((item) => {
-                            return (
-                                <Movie
-                                    key={item.episode_id}
-                                    title={item.title}
-                                    openingText={item.opening_crawl}
-                                    releaseDate={item.release_date}
-                                />
-                            )
-                        })
-                    }
+        <React.Fragment>
+            {
+                props.movies.map((item) => {
+                    return (
+                        <Movie
+                            key={item.episode_id}
+                            title={item.title}
+                            openingText={item.opening_crawl}
+                            releaseDate={item.release_date}
+                        />
+                    )
+                })
+            }
+        </React.Fragment>
 
-                </div>
-            </div>
-        </div>
     )
 }
 
