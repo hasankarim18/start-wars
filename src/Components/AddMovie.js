@@ -35,7 +35,7 @@ function AddMovie(props) {
         <label htmlFor='date'>Release Date</label>
         <input type='text' id='date' ref={releaseDateRef} />
       </div>
-      <button>Add Movie</button>
+      <button className="btn btn-success" >Add Movie</button>
     </form>
   );
 }
