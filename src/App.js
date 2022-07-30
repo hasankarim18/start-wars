@@ -53,13 +53,27 @@ function App() {
     content = <p>Loading ... </p>
   }
 
+
+  const addMovieHandler = async (movie) => {
+    const response = await fetch('https://projects-a1e23-default-rtdb.firebaseio.com/movies.json', {
+      method: 'POST',
+      body: JSON.stringify(movie),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+
+    const data = await response.json()
+    console.log(data)
+  }
+
   return (
     <React.Fragment>
       <section className="container p-2" >
         <div className="row justify-content-center">
           <div style={{ borderRadius: "10px" }} className="col-12 col-sm-10 col-md-8 bg-light p-2 " >
 
-            <AddMovie />
+            <AddMovie onAddMovie={addMovieHandler} />
 
           </div>
         </div>
