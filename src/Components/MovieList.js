@@ -14,10 +14,10 @@ const MovieList = (props) => {
                 props.movies.map((item) => {
                     return (
                         <Movie
-                            key={item.episode_id}
+                            key={item.id}
                             title={item.title}
-                            openingText={item.opening_crawl}
-                            releaseDate={item.release_date}
+                            openingText={item.openingText}
+                            releaseDate={item.releaseDate}
                         />
                     )
                 })

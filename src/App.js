@@ -18,13 +18,25 @@ function App() {
     setIsLoading(true)
     setError(null)
     try {
-      const response = await fetch('https://swapi.dev/api/films/')
+      const response = await fetch('https://projects-a1e23-default-rtdb.firebaseio.com/movies.json')
       if (!response.ok) {
         throw new Error('Something went wrong here!')
       }
       const data = await response.json()
+
+      const loadedMovies = []
+
+      for (const key in data) {
+        loadedMovies.push({
+          id: key,
+          title: data[key].title,
+          openingText: data[key].openingText,
+          releaseDate: data[key].releaseDate
+        })
+      }
+
       const getData = () => {
-        setMovies(data.results)
+        setMovies(loadedMovies)
         setIsLoading(false)
 
       }
